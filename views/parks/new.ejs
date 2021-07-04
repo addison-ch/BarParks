@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit a Park</title>
+</head>
+
+<body>
+
+    <h3>Add a park! </h3><span><a href="/parks">cancel</a></span>
+    <form action="/parks" method="POST">
+        <div>
+            <label for="title">Enter a title for the park</label>
+            <input type="text" id="title" name="park[title]" placeholder="ex. Facility type - Park name">
+        </div>
+        <div>
+            <label for="location">Enter the location</label>
+            <input type="text" id="location" name="park[location]" placeholder="ex. Hamilton, Ontario">
+        </div>
+        <button>Submit Park</button>
+    </form>
+</body>
+
+</html>
