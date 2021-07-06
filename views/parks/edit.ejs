@@ -1,18 +1,61 @@
 <% layout('layouts/boilerplate.ejs') %>
-    <h3>Editing <%= park.title %>
-    </h3>
-    <form action="/parks/<%= park._id %>?_method=PUT" method="POST">
-        <div>
-            <label for="title">Change the title</label>
-            <input type="text" id="title" name="park[title]" placeholder="ex. Facility type - Park name"
-                value="<%= park.title %>">
-        </div>
-        <div>
-            <label for="location">Change the address</label>
-            <input type="text" id="address" name="park[address]" placeholder="ex. Hamilton, Ontario"
-                value="<%= park.address %>">
-        </div>
-        <button>Update</button>
-    </form>
 
-    <footer><a href="/parks/<%= park._id %>">cancel</a></footer>
+    <div class="row">
+        <h1 class="text-center mb-3">Editing <%=park.title %> - <%=park.location %>
+        </h1>
+        <div class="col-6 offset-3">
+
+            <form action="/parks/<%= park._id %>?_method=PUT" autocomplete="off" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Enter the name or type of park/facility</label>
+                    <input class="form-control" type="text" id="title" name="park[title]"
+                        placeholder="ex. Outdoor Gym, Calisthenics Park, Trekfit Location" value="<%=park.title %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Enter the location of the park/facility</label>
+                    <input class="form-control" type="text" id="location" name="park[location]"
+                        placeholder="ex. Maryvale Park, Jane/Finch intersection, Runeterra Plaza"
+                        value="<%=park.location %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Enter the address</label>
+                    <input class="form-control" type="text" id="address" name="park[address]"
+                        placeholder="ex. Hamilton, Ontario" value="<%=park.address %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image URL</label>
+                    <input class="form-control" type="text" id="image" name="park[image]"
+                        placeholder="ex. https://source.unsplash.com/random" value="<%=park.image %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description (ex. directions to arrive, peak hours,
+                        equipment available)</label>
+                    <textarea class="form-control" type="text" id="description"
+                        name="park[description]"><%=park.description %></textarea>
+                </div>
+
+                <p class="form-control-label mb-2">What equipment is available?</p>
+                <div class="form-control mb-3">
+
+                    <label><input type="checkbox" name="park[equipment[]]" value="Gymnastic rings"> Gymnastic
+                        rings</label>
+                    <label><input type="checkbox" name="park[equipment]" value="Pull up bars"> Pull up bars</label>
+                    <label><input type="checkbox" name="park[equipment]" value="Parallel bars"> Parallel bars</label>
+                    <label><input type="checkbox" name="park[equipment]" value="Monkey bars"> Monkey bars</label>
+                    <label><input type="checkbox" name="park[equipment]" value="Push up bars"> Push up bars</label>
+                    <label><input type="checkbox" name="park[equipment]" value="Abs benches"> Abs benches</label>
+                    <label><input type="checkbox" name="park[equipment]" value="Jump platforms"> Jump
+                        platforms</label>
+                </div>
+
+
+
+
+
+                <div class=" mb-3">
+                    <button class="btn btn-success">Update Park</button>
+                </div>
+            </form>
+            <footer><a href="/parks/<%=park._id %>">Cancel</a></footer>
+        </div>
+    </div>

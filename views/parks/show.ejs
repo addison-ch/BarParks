@@ -1,24 +1,43 @@
 <% layout('layouts/boilerplate.ejs') %>
 
-    <h2>
-        <%= park.title%> at <%= park.location%>
-    </h2>
-    <h3>
-        <%= park.address%>
-    </h3>
-    <h5>
-        <% for(let tag of park.equipment) {%>
-            <span class="badge bg-secondary">
-                <%= tag%>
-            </span>
-            <% }%>
-    </h5>
-    <img src="<%= park.image%>" alt="">
-    <p>
-        <%= park.description%>
-    </p>
-    <footer>
-        <a href="/parks/<%= park._id %>/edit">Edit this park</a>
-        <a href="/parks">View all parks</a>
-        <form action="/parks/<%= park._id %>?_method=DELETE" method="POST"><button>delete</button></form>
-    </footer>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card mb-4">
+                <img src="<%= park.image %> " class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= park.title%> at <%= park.location%>
+                    </h5>
+                    <p class="card-text">
+                        <%= park.description%>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+
+                    <li class="list-group-item">
+                        <% for(let tag of park.equipment) {%>
+                            <span class="badge bg-secondary">
+                                <%= tag%>
+                            </span>
+                            <% }%>
+                    </li>
+                    <li class="list-group-item text-muted">
+                        <%= park.address%>
+                    </li>
+
+                </ul>
+                <div class="card-body">
+                    <a href="/parks/<%= park._id %>/edit" class="card-link btn btn-warning">Edit</a>
+
+                    <form action="/parks/<%= park._id %>?_method=DELETE" method="POST" class="d-inline"><button
+                            class='btn btn-danger'>delete</button></form>
+                </div>
+                <div class="card-footer text-muted"><a href="/parks" class="card-footer">View all parks</a></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--  -->

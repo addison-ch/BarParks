@@ -54,7 +54,7 @@ app.get('/parks/:id', async (req, res) => {
 })
 app.put('/parks/:id', async (req, res) => {
     const { id } = req.params;
-    const park = await Park.findByIdAndUpdate(id, { ...req.body.park }, { new: true });
+    const park = await Park.findByIdAndUpdate(id, { ...req.body.park });
     res.redirect(`/parks/${id}`);
 })
 app.delete('/parks/:id', async (req, res) => {
