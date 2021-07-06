@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const Park = require('./models/park');
+const methodOverride = require('method-override');
 
 mongoose.connect('mongodb://localhost:27017/barparks', {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndexes: true
@@ -19,7 +20,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
-
+app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
     res.render('home.ejs');
@@ -39,14 +40,26 @@ app.post('/parks', async (req, res) => {
 app.get('/parks/new', (req, res) => {
     res.render('parks/new.ejs');
 })
-
+app.get('/parks/:id/edit', async (req, res) => {
+    const { id } = req.params;
+    const park = await Park.findById(id);
+    res.render('parks/edit.ejs', { park });
+})
 app.get('/parks/:id', async (req, res) => {
     const { id } = req.params;
     const park = await Park.findById(id);
     res.render('parks/show.ejs', { park })
 })
-
-
+app.put('/parks/:id', async (req, res) => {
+    const { id } = req.params;
+    const park = await Park.findByIdAndUpdate(id, { ...req.body.park }, { new: true });
+    res.redirect(`/parks/${id}`);
+})
+app.delete('/parks/:id', async (req, res) => {
+    const { id } = req.params;
+    await Park.findByIdAndDelete(id);
+    res.redirect('/parks');
+})
 app.listen(3000, function () {
     console.log('Serving on port 3000');
 })

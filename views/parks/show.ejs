@@ -17,8 +17,11 @@
     <h3>
         <%= park.location%>
     </h3>
-
-    <a href="/parks">View all parks</a>
+    <footer>
+        <a href="/parks/<%= park._id %>/edit">Edit this park</a>
+        <a href="/parks">View all parks</a>
+        <form action="/parks/<%= park._id %>?_method=DELETE" method="POST"><button>delete</button></form>
+    </footer>
 </body>
 
 </html>
