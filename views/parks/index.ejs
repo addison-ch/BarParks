@@ -1,26 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Parks</title>
-</head>
-
-<body>
     <h1>All Parks</h1>
     <div>
         <h4><a href="/parks/new">Submit a park</a></h4>
     </div>
-    <ul>
-        <% for(let park of parks){ %>
-            <li><a href="/parks/<%= park._id %> ">
-                    <%= park.title %>
-                </a>
-            </li>
-            <% } %>
-    </ul>
-</body>
 
-</html>
+    <% for(let park of parks){ %>
+
+        <div class="card mb-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="/parks/<%= park._id %> ">
+                        <img class="img-fluid" alt="" src="<%= park.image %> "></a>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= park.title %>
+                        </h5>
+                        <h6 class='card-text'>
+                            <%= park.location %>
+                        </h6>
+                        <small class=" card-text text-muted">
+                            <%= park.address %>
+                        </small>
+                        <p class='card-text'>
+                            <%= park.description %>
+                        </p>
+                        <a href="/parks/<%= park._id %> " class="btn btn-primary">View details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% } %>

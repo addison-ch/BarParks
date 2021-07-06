@@ -1,28 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit a Park</title>
-</head>
+    <div class="row">
+        <h1 class="text-center mb-3">Submit a new park!</h1>
+        <div class="col-6 offset-3">
 
-<body>
+            <form action="/parks" autocomplete="off" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Enter the name or type of park/facility</label>
+                    <input class="form-control" type="text" id="title" name="park[title]"
+                        placeholder="ex. Outdoor Gym, Calisthenics Park, Trekfit Location">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Enter the location of the park/facility</label>
+                    <input class="form-control" type="text" id="location" name="park[location]"
+                        placeholder="ex. Maryvale Park, Jane/Finch intersection, Runeterra Plaza">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Enter the address</label>
+                    <input class="form-control" type="text" id="address" name="park[address]"
+                        placeholder="ex. Hamilton, Ontario">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image URL</label>
+                    <input class="form-control" type="text" id="image" name="park[image]"
+                        placeholder="ex. https://source.unsplash.com/random">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description (ex. directions to arrive, peak hours,
+                        equipment available)</label>
+                    <textarea class="form-control" type="text" id="description" name="park[description]"></textarea>
+                </div>
 
-    <h3>Add a park! </h3>
-    <form action="/parks" method="POST">
-        <div>
-            <label for="title">Enter a title for the park</label>
-            <input type="text" id="title" name="park[title]" placeholder="ex. Facility type - Park name">
+                <p class="form-control-label mb-2">What equipment is available?</p>
+                <div class="form-control mb-3">
+
+                    <label><input type="checkbox" name="park[equipment[]]" value="Gymnastic rings"> Gymnastic
+                        rings</label>
+                    <label><input type="checkbox" name="park[equipment]" value="Pull up bars"> Pull up bars</label>
+                    <label><input type="checkbox" name="park[equipment]" value="Parallel bars"> Parallel bars</label>
+                    <label><input type="checkbox" name="park[equipment]" value="Monkey bars"> Monkey bars</label>
+                    <label><input type="checkbox" name="park[equipment]" value="Push up bars"> Push up bars</label>
+                    <label><input type="checkbox" name="park[equipment]" value="Abs benches"> Abs benches</label>
+                    <label><input type="checkbox" name="park[equipment]" value="Jump platforms"> Jump
+                        platforms</label>
+                </div>
+
+
+
+
+
+                <div class=" mb-3">
+                    <button class="btn btn-success">Submit Park</button>
+                </div>
+            </form>
+            <footer><a href="/parks">All Parks</a></footer>
         </div>
-        <div>
-            <label for="location">Enter the location</label>
-            <input type="text" id="location" name="park[location]" placeholder="ex. Hamilton, Ontario">
-        </div>
-        <button>Submit Park</button>
-    </form>
-    <footer><a href="/parks">cancel</a></footer>
-</body>
-
-</html>
+    </div>

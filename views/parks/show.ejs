@@ -1,27 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= park.title%>
-    </title>
-</head>
-
-<body>
     <h2>
-        <%= park.title%>
+        <%= park.title%> at <%= park.location%>
     </h2>
     <h3>
-        <%= park.location%>
+        <%= park.address%>
     </h3>
+    <h5>
+        <% for(let tag of park.equipment) {%>
+            <span class="badge bg-secondary">
+                <%= tag%>
+            </span>
+            <% }%>
+    </h5>
+    <img src="<%= park.image%>" alt="">
+    <p>
+        <%= park.description%>
+    </p>
     <footer>
         <a href="/parks/<%= park._id %>/edit">Edit this park</a>
         <a href="/parks">View all parks</a>
         <form action="/parks/<%= park._id %>?_method=DELETE" method="POST"><button>delete</button></form>
     </footer>
-</body>
-
-</html>

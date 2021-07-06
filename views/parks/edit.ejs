@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editing <%= park.title %>
-    </title>
-</head>
-
-<body>
+<% layout('layouts/boilerplate.ejs') %>
     <h3>Editing <%= park.title %>
     </h3>
     <form action="/parks/<%= park._id %>?_method=PUT" method="POST">
@@ -19,14 +8,11 @@
                 value="<%= park.title %>">
         </div>
         <div>
-            <label for="location">Change the location</label>
-            <input type="text" id="location" name="park[location]" placeholder="ex. Hamilton, Ontario"
-                value="<%= park.location %>">
+            <label for="location">Change the address</label>
+            <input type="text" id="address" name="park[address]" placeholder="ex. Hamilton, Ontario"
+                value="<%= park.address %>">
         </div>
         <button>Update</button>
     </form>
 
     <footer><a href="/parks/<%= park._id %>">cancel</a></footer>
-</body>
-
-</html>
