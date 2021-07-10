@@ -5,33 +5,35 @@
         </h1>
         <div class="col-6 offset-3">
 
-            <form action="/parks/<%= park._id %>?_method=PUT" autocomplete="off" method="POST">
+            <form action="/parks/<%= park._id %>?_method=PUT" autocomplete="off" method="POST" novalidate
+                class="needs-validation">
                 <div class="mb-3">
                     <label class="form-label" for="title">Enter the name or type of park/facility</label>
                     <input class="form-control" type="text" id="title" name="park[title]"
-                        placeholder="ex. Outdoor Gym, Calisthenics Park, Trekfit Location" value="<%=park.title %>">
+                        placeholder="ex. Outdoor Gym, Calisthenics Park, Trekfit Location" value="<%=park.title %>"
+                        required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="location">Enter the location of the park/facility</label>
                     <input class="form-control" type="text" id="location" name="park[location]"
                         placeholder="ex. Maryvale Park, Jane/Finch intersection, Runeterra Plaza"
-                        value="<%=park.location %>">
+                        value="<%=park.location %>" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="location">Enter the address</label>
                     <input class="form-control" type="text" id="address" name="park[address]"
-                        placeholder="ex. Hamilton, Ontario" value="<%=park.address %>">
+                        placeholder="ex. Hamilton, Ontario" value="<%=park.address %>" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="image">Image URL</label>
                     <input class="form-control" type="text" id="image" name="park[image]"
-                        placeholder="ex. https://source.unsplash.com/random" value="<%=park.image %>">
+                        placeholder="ex. https://source.unsplash.com/random" value="<%=park.image %>" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="description">Description (ex. directions to arrive, peak hours,
                         equipment available)</label>
-                    <textarea class="form-control" type="text" id="description"
-                        name="park[description]"><%=park.description %></textarea>
+                    <textarea class="form-control" type="text" id="description" name="park[description]"
+                        required><%=park.description %></textarea>
                 </div>
 
                 <p class="form-control-label mb-2">What equipment is available?</p>

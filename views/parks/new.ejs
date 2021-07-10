@@ -4,31 +4,32 @@
         <h1 class="text-center mb-3">Submit a new park!</h1>
         <div class="col-6 offset-3">
 
-            <form action="/parks" autocomplete="off" method="POST">
+            <form action="/parks" autocomplete="off" method="POST" novalidate class="needs-validation">
                 <div class="mb-3">
                     <label class="form-label" for="title">Enter the name or type of park/facility</label>
                     <input class="form-control" type="text" id="title" name="park[title]"
-                        placeholder="ex. Outdoor Gym, Calisthenics Park, Trekfit Location">
+                        placeholder="ex. Outdoor Gym, Calisthenics Park, Trekfit Location" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="location">Enter the location of the park/facility</label>
                     <input class="form-control" type="text" id="location" name="park[location]"
-                        placeholder="ex. Maryvale Park, Jane/Finch intersection, Runeterra Plaza">
+                        placeholder="ex. Maryvale Park, Jane/Finch intersection, Runeterra Plaza" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="location">Enter the address</label>
                     <input class="form-control" type="text" id="address" name="park[address]"
-                        placeholder="ex. Hamilton, Ontario">
+                        placeholder="ex. Hamilton, Ontario" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="image">Image URL</label>
                     <input class="form-control" type="text" id="image" name="park[image]"
-                        placeholder="ex. https://source.unsplash.com/random">
+                        placeholder="ex. https://source.unsplash.com/random" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="description">Description (ex. directions to arrive, peak hours,
                         equipment available)</label>
-                    <textarea class="form-control" type="text" id="description" name="park[description]"></textarea>
+                    <textarea class="form-control" type="text" id="description" name="park[description]"
+                        required></textarea>
                 </div>
 
                 <p class="form-control-label mb-2">What equipment is available?</p>
