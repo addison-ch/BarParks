@@ -47,6 +47,17 @@
                 </div>
                 <button class='btn btn-success'>Add Review</button>
             </form>
+            <% for(let r of park.reviews) {%>
+
+                <div class="mb-3">
+                    <p>
+                        <%= r.rating%>
+                    </p>
+                    <p>
+                        <%= r.body %>
+                    </p>
+                </div>
+                <% } %>
         </div>
     </div>
 
