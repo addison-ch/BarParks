@@ -80,7 +80,9 @@ app.delete('/parks/:id', catchAsync(async (req, res) => {
     await Park.findByIdAndDelete(id);
     res.redirect('/parks');
 }))
-
+app.post('/parks/:id/reviews', catchAsync(async (req, res) => {
+    const park = await FindById(req.params.id);
+}))
 app.all("*", (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
 })
