@@ -3,11 +3,11 @@ const path = require('path');
 const mongoose = require('mongoose');
 const Park = require('./models/park');
 const ejsMate = require('ejs-mate');
-const { parkSchema } = require('./schemas.js')
+const { parkSchema, reviewSchema } = require('./schemas.js')
 const methodOverride = require('method-override');
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError')
-
+const Review = require('./models/review');
 
 mongoose.connect('mongodb://localhost:27017/barparks', {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndexes: true
@@ -34,6 +34,16 @@ const validatePark = (req, res, next) => {
     const { error } = parkSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(x => x.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }
+}
+
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(x => x.message).join(',');
         throw new ExpressError(msg, 400)
     } else {
         next();
@@ -67,7 +77,7 @@ app.get('/parks/:id/edit', catchAsync(async (req, res) => {
 }))
 app.get('/parks/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
-    const park = await Park.findById(id);
+    const park = await Park.findById(id).populate('reviews');
     res.render('parks/show.ejs', { park })
 }))
 app.put('/parks/:id', validatePark, catchAsync(async (req, res) => {
@@ -80,8 +90,14 @@ app.delete('/parks/:id', catchAsync(async (req, res) => {
     await Park.findByIdAndDelete(id);
     res.redirect('/parks');
 }))
-app.post('/parks/:id/reviews', catchAsync(async (req, res) => {
-    const park = await FindById(req.params.id);
+app.post('/parks/:id/reviews', validateReview, catchAsync(async (req, res) => {
+    const park = await Park.findById(req.params.id);
+    const review = new Review(req.body.review);
+    park.reviews.push(review);
+    await review.save();
+    await park.save();
+    res.redirect(`/parks/${req.params.id}`);
+
 }))
 app.all("*", (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))

@@ -36,13 +36,14 @@
             </div>
 
             <h2>Leave a Review!</h2>
-            <form action="/parks/<%= park._id %>/reviews" method="POST" class='mb-3'>
+            <form action="/parks/<%= park._id %>/reviews" method="POST" class='mb-3 needs-validation' novalidate>
                 <div class="mb-3">
                     <label for="rating" class="form-label">Rating</label>
-                    <input type="range" min='1' max='5' class='form-range' id='rating'>
+                    <input type="range" min='1' max='5' class='form-range' id='rating' name='review[rating]'>
                 </div>
                 <div class="mb-3"><label for="body" class='form-label'>Review</label>
-                    <textarea name="body" id="" class="form-control" cols="30" rows="3" id='body'></textarea>
+                    <textarea name="review[body]" id="" class="form-control" cols="30" rows="3" id='body'
+                        required></textarea>
                 </div>
                 <button class='btn btn-success'>Add Review</button>
             </form>
