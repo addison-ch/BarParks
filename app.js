@@ -99,6 +99,12 @@ app.post('/parks/:id/reviews', validateReview, catchAsync(async (req, res) => {
     res.redirect(`/parks/${req.params.id}`);
 
 }))
+
+app.delete('/parks/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    await Park.findByIdAndUpdate(req.params.id, { $pull: { reviews: req.params.reviewId } })
+    await Review.findByIdAndDelete(req.params.reviewId);
+    res.redirect(`/parks/${req.params.id}`)
+}))
 app.all("*", (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
 })
@@ -109,6 +115,7 @@ app.use((err, req, res, next) => {
     }
     res.status(statusCode).render('errors.ejs', { err })
 })
+
 
 app.listen(3000, function () {
     console.log('Serving on port 3000');
