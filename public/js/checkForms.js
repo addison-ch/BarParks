@@ -22,10 +22,15 @@
                 const isCheckboxChecked = c1.checked || c2.checked || c3.checked || c4.checked || c5.checked || c6.checked || c7.checked;
 
                 // If form is invalid or at least one checkbox is not checked -> fail validation
+                if (isCheckboxChecked === false) {
+                    const p = form.querySelector('#EQ');
+                    p.style.color = 'red';
+                }
                 if (form.checkValidity() === false || isCheckboxChecked === false) {
                     event.preventDefault();
                     event.stopPropagation();
                 }
+
                 form.classList.add('was-validated')
             }, false)
         })
