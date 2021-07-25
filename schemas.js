@@ -9,8 +9,8 @@ module.exports.parkSchema = Joi.object({
         address: Joi.string().required(),
         image: Joi.string().required(),
         description: Joi.string().required(),
-        equipment: Joi.array().items(Joi.string())
-    }).required()
+        equipment: Joi.array().items(Joi.string()).single().required()
+    })
 })
 
 module.exports.reviewSchema = Joi.object({

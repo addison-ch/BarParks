@@ -28,6 +28,7 @@ router.post('/', validatePark, catchAsync(async (req, res, next) => {
 
     const park = new Park(req.body.park);
     await park.save();
+    req.flash('success', 'Sucessfully submitted a new park!');
     res.redirect(`/parks/${park._id}`);
 
 
