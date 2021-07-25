@@ -48,18 +48,24 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
 router.get('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
     const park = await Park.findById(id).populate('reviews');
+    if (!park) {
+        req.flash('error', 'Park does not exist.');
+        res.redirect('/parks')
+    }
     res.render('parks/show.ejs', { park })
 }))
 
 router.put('/:id', validatePark, catchAsync(async (req, res) => {
     const { id } = req.params;
     const park = await Park.findByIdAndUpdate(id, { ...req.body.park });
+    req.flash('success', 'Sucessfully updated park information.')
     res.redirect(`/parks/${id}`);
 }))
 
 router.delete('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
     await Park.findByIdAndDelete(id);
+    req.flash('success', 'Successfully deleted park.')
     res.redirect('/parks');
 }))
 

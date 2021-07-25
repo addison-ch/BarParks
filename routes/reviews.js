@@ -24,6 +24,7 @@ router.post('/', validateReview, catchAsync(async (req, res) => {
     park.reviews.push(review);
     await review.save();
     await park.save();
+    req.flash('success', 'New review has been added');
     res.redirect(`/parks/${req.params.id}`);
 
 }))
