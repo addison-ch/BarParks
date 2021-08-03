@@ -6,6 +6,7 @@ const { parkSchema, reviewSchema } = require('../schemas.js')
 const methodOverride = require('method-override');
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
+const { isLoggedIn } = require('../middleware.js');
 
 const validatePark = (req, res, next) => {
 
@@ -23,7 +24,7 @@ router.get('/', catchAsync(async (req, res) => {
     res.render('parks/index.ejs', { parks });
 }))
 
-router.post('/', validatePark, catchAsync(async (req, res, next) => {
+router.post('/', isLoggedIn, validatePark, catchAsync(async (req, res, next) => {
 
 
     const park = new Park(req.body.park);
@@ -34,11 +35,15 @@ router.post('/', validatePark, catchAsync(async (req, res, next) => {
 
 }))
 
-router.get('/new', (req, res) => {
-    res.render('parks/new.ejs');
+router.get('/new', isLoggedIn, (req, res) => {
+
+    return res.render('parks/new.ejs');
+
+
+
 })
 
-router.get('/:id/edit', catchAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
     const { id } = req.params;
     const park = await Park.findById(id);
     res.render('parks/edit.ejs', { park });
@@ -55,17 +60,17 @@ router.get('/:id', catchAsync(async (req, res) => {
     res.render('parks/show.ejs', { park })
 }))
 
-router.put('/:id', validatePark, catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, validatePark, catchAsync(async (req, res) => {
     const { id } = req.params;
     const park = await Park.findByIdAndUpdate(id, { ...req.body.park });
-    req.flash('success', 'Sucessfully updated park information.')
+    req.flash('success', 'Sucessfully updated park information. 👍')
     res.redirect(`/parks/${id}`);
 }))
 
-router.delete('/:id', catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
     const { id } = req.params;
     await Park.findByIdAndDelete(id);
-    req.flash('success', 'Successfully deleted park.')
+    req.flash('success', 'Successfully deleted park. 👎')
     res.redirect('/parks');
 }))
 
