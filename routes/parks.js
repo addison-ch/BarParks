@@ -6,18 +6,10 @@ const { parkSchema, reviewSchema } = require('../schemas.js')
 const methodOverride = require('method-override');
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
-const { isLoggedIn } = require('../middleware.js');
+const { isLoggedIn, isAuthor, validatePark } = require('../middleware.js');
 
-const validatePark = (req, res, next) => {
 
-    const { error } = parkSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(x => x.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next();
-    }
-}
+
 
 router.get('/', catchAsync(async (req, res) => {
     const parks = await Park.find({});
@@ -44,9 +36,14 @@ router.get('/new', isLoggedIn, (req, res) => {
 
 })
 
-router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const { id } = req.params;
     const park = await Park.findById(id);
+    if (!park) {
+        req.flash('error', 'That park does not exist😟');
+        return res.redirect('/parks')
+    }
+
     res.render('parks/edit.ejs', { park });
 }))
 
@@ -61,14 +58,16 @@ router.get('/:id', catchAsync(async (req, res) => {
     res.render('parks/show.ejs', { park })
 }))
 
-router.put('/:id', isLoggedIn, validatePark, catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, validatePark, isAuthor, catchAsync(async (req, res) => {
+
     const { id } = req.params;
-    const park = await Park.findByIdAndUpdate(id, { ...req.body.park });
+
+    const park = await Park.findByIdAndUpdate(id, { ...req.body });
     req.flash('success', 'Sucessfully updated park information. 👍')
     res.redirect(`/parks/${id}`);
 }))
 
-router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const { id } = req.params;
     await Park.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted park. 👎')
