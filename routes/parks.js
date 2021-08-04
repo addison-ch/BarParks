@@ -28,6 +28,7 @@ router.post('/', isLoggedIn, validatePark, catchAsync(async (req, res, next) => 
 
 
     const park = new Park(req.body.park);
+    park.author = req.user._id;
     await park.save();
     req.flash('success', 'Sucessfully submitted a new park!');
     res.redirect(`/parks/${park._id}`);
@@ -52,7 +53,7 @@ router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
 
 router.get('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
-    const park = await Park.findById(id).populate('reviews');
+    const park = await Park.findById(id).populate('reviews').populate('author');
     if (!park) {
         req.flash('error', 'Park does not exist.');
         res.redirect('/parks')

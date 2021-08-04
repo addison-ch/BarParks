@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Park = require('../models/park');
 const cities = require('./cities');
+require('../models/user')
 const { places, descriptors, lorem } = require('./seedingHelp');
 
 mongoose.connect('mongodb://localhost:27017/barparks', {
@@ -25,6 +26,7 @@ const seedDB = async () => {
             location: `${sample(places)}`,
             image: "https://source.unsplash.com/collection/qxWqS8q4bgo",
             description: `${sample(lorem)}`,
+            author: '610884d3b75c072a409a6b22',
             equipment: ["rings", "pull-up bars", "push-up bars", "monkey bars", "poles", "machine guns"]
         })
         await park.save();
