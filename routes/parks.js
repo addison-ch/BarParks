@@ -50,7 +50,9 @@ router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
 
 router.get('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
-    const park = await Park.findById(id).populate('reviews').populate('author');
+    const park = await Park.findById(id).populate({
+        path: 'reviews', populate: { path: 'author' }
+    }).populate('author');
     if (!park) {
         req.flash('error', 'Park does not exist.');
         res.redirect('/parks')

@@ -43,3 +43,13 @@ module.exports.validateReview = (req, res, next) => {
         next();
     }
 }
+
+module.exports.isAuthor2 = async (req, res, next) => {
+    const { id, reviewId } = req.params;
+    const rev = await Review.findById(reviewId);
+    if (!rev.author.equals(req.user._id)) {
+        req.flash('error', 'You are not authorized to do that 😟')
+        res.redirect(`/parks/${id}`);
+    }
+    next();
+}
