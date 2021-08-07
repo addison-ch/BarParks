@@ -1,7 +1,7 @@
 const Park = require('./models/park');
 const ExpressError = require('./utils/ExpressError');
 const { parkSchema, reviewSchema } = require('./schemas.js')
-const ejsMate = require('ejs-mate');
+const Review = require('./models/review');
 
 module.exports.isLoggedIn = (req, res, next) => {
     console.log("CURRENT USER...", req.user)
@@ -49,7 +49,7 @@ module.exports.isAuthor2 = async (req, res, next) => {
     const rev = await Review.findById(reviewId);
     if (!rev.author.equals(req.user._id)) {
         req.flash('error', 'You are not authorized to do that 😟')
-        res.redirect(`/parks/${id}`);
+        return res.redirect(`/parks/${id}`);
     }
     next();
 }
