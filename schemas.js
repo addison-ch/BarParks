@@ -7,7 +7,7 @@ module.exports.parkSchema = Joi.object({
         title: Joi.string().required(),
         location: Joi.string().required(),
         address: Joi.string().required(),
-        image: Joi.string().required(),
+        // images: Joi.string().required(),
         description: Joi.string().required(),
         equipment: Joi.array().items(Joi.string()).single().required()
     })

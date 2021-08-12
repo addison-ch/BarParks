@@ -10,7 +10,7 @@ const upload = multer({ storage })
 
 router.route('/')
     .get(catchAsync(parks.index))
-    .post(isLoggedIn, validatePark, upload.array('image'), catchAsync(parks.submitPark))
+    .post(isLoggedIn, upload.array('image'), validatePark, catchAsync(parks.submitPark))
 
 router.get('/new', isLoggedIn, parks.newParkForm)
 

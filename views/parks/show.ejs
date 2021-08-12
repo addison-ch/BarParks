@@ -3,40 +3,42 @@
     <div class="row">
         <div class="col-6">
             <div class="card mb-4">
-                <img src="<%= park.image %> " class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <%= park.title%> at <%= park.location%>
-                    </h5>
-                    <p class="card-text">
-                        <%= park.description%>
-                    </p>
-                </div>
-                <ul class="list-group list-group-flush">
-
-                    <li class="list-group-item">
-                        <% for(let tag of park.equipment) {%>
-                            <span class="badge bg-secondary">
-                                <%= tag%>
-                            </span>
-                            <% }%>
-                    </li>
-                    <li class="list-group-item text-muted">
-                        <%= park.address%>
-                    </li>
-
-                </ul>
-                <% if(currentUser && park.author.equals(currentUser._id)){ %>
-                    <div class="card-body">
-                        <a href="/parks/<%= park._id %>/edit" class="card-link btn btn-warning">Edit</a>
-
-                        <form action="/parks/<%= park._id %>?_method=DELETE" method="POST" class="d-inline"><button
-                                class='btn btn-danger'>delete</button></form>
-                    </div>
-                    <%}%>
-                        <div class="card-footer text-muted">Posted 2 days ago <i>by</i>
-                            <%=park.author.username%>
+                <% for(let i of park.images){ %>
+                    <img src="<%= i.url %> " class="card-img-top">
+                    <% } %>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= park.title%> at <%= park.location%>
+                            </h5>
+                            <p class="card-text">
+                                <%= park.description%>
+                            </p>
                         </div>
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item">
+                                <% for(let tag of park.equipment) {%>
+                                    <span class="badge bg-secondary">
+                                        <%= tag%>
+                                    </span>
+                                    <% }%>
+                            </li>
+                            <li class="list-group-item text-muted">
+                                <%= park.address%>
+                            </li>
+
+                        </ul>
+                        <% if(currentUser && park.author.equals(currentUser._id)){ %>
+                            <div class="card-body">
+                                <a href="/parks/<%= park._id %>/edit" class="card-link btn btn-warning">Edit</a>
+
+                                <form action="/parks/<%= park._id %>?_method=DELETE" method="POST" class="d-inline">
+                                    <button class='btn btn-danger'>delete</button></form>
+                            </div>
+                            <%}%>
+                                <div class="card-footer text-muted">Posted 2 days ago <i>by</i>
+                                    <%=park.author.username%>
+                                </div>
 
             </div>
         </div>

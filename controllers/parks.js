@@ -1,7 +1,5 @@
 const Park = require('../models/park');
 
-
-
 module.exports.index = async (req, res) => {
     const parks = await Park.find({});
     res.render('parks/index.ejs', { parks });
@@ -12,9 +10,12 @@ module.exports.newParkForm = (req, res) => {
 }
 
 module.exports.submitPark = async (req, res, next) => {
+
     const park = new Park(req.body.park);
+    park.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     park.author = req.user._id;
     await park.save();
+    console.log(park)
     req.flash('success', 'Sucessfully submitted a new park!');
     res.redirect(`/parks/${park._id}`);
 }
