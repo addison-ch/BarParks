@@ -4,7 +4,8 @@
         <h1 class="text-center mb-3">Submit a new park!</h1>
         <div class="col-6 offset-3">
 
-            <form action="/parks" autocomplete="off" method="POST" novalidate class="needs-validation">
+            <form action="/parks" autocomplete="off" method="POST" novalidate class="needs-validation"
+                enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="title">Enter the name or type of park/facility</label>
                     <input class="form-control" type="text" id="title" name="park[title]"
@@ -15,16 +16,18 @@
                     <input class="form-control" type="text" id="location" name="park[location]"
                         placeholder="ex. Maryvale Park, Jane/Finch intersection, Runeterra Plaza" required>
                 </div>
+
                 <div class="mb-3">
                     <label class="form-label" for="location">Enter the address</label>
                     <input class="form-control" type="text" id="address" name="park[address]"
                         placeholder="ex. Hamilton, Ontario" required>
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label class="form-label" for="image">Image URL</label>
                     <input class="form-control" type="text" id="image" name="park[image]"
                         placeholder="ex. https://source.unsplash.com/random" required>
-                </div>
+                </div> -->
+                <input type="file" name="image" id="" multiple>
                 <div class="mb-3">
                     <label class="form-label" for="description">Description (ex. directions to arrive, peak hours,
                         equipment available)</label>
