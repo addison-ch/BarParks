@@ -12,7 +12,11 @@
             <div class="row">
                 <div class="col-md-4">
                     <a href="/parks/<%= park._id %> ">
-                        <img class="img-fluid" alt="" src="<%= park.images[0].url %> "></a>
+                        <% if(park.images[0]) {%>
+                            <img class="img-fluid" alt="" src="<%= park.images[0].url %> ">
+                            <% } %>
+                    </a>
+
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
