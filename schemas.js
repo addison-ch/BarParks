@@ -10,7 +10,8 @@ module.exports.parkSchema = Joi.object({
         // images: Joi.string().required(),
         description: Joi.string().required(),
         equipment: Joi.array().items(Joi.string()).single().required()
-    })
+    }).required(),
+    deleteImages: Joi.array()
 })
 
 module.exports.reviewSchema = Joi.object({
