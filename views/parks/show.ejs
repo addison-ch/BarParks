@@ -2,43 +2,74 @@
     <link rel="stylesheet" href="/css/starability-basic.css">
     <div class="row">
         <div class="col-6">
-            <div class="card mb-4">
-                <% for(let i of park.images){ %>
-                    <img src="<%= i.url %> " class="card-img-top">
-                    <% } %>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <%= park.title%> at <%= park.location%>
-                            </h5>
-                            <p class="card-text">
-                                <%= park.description%>
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-
-                            <li class="list-group-item">
-                                <% for(let tag of park.equipment) {%>
-                                    <span class="badge bg-secondary">
-                                        <%= tag%>
-                                    </span>
-                                    <% }%>
-                            </li>
-                            <li class="list-group-item text-muted">
-                                <%= park.address%>
-                            </li>
-
-                        </ul>
-                        <% if(currentUser && park.author.equals(currentUser._id)){ %>
-                            <div class="card-body">
-                                <a href="/parks/<%= park._id %>/edit" class="card-link btn btn-warning">Edit</a>
-
-                                <form action="/parks/<%= park._id %>?_method=DELETE" method="POST" class="d-inline">
-                                    <button class='btn btn-danger'>delete</button></form>
-                            </div>
-                            <%}%>
-                                <div class="card-footer text-muted">Posted 2 days ago <i>by</i>
-                                    <%=park.author.username%>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <% let count=0 %>
+                        <% for(let i of park.images){ %>
+                            <% if(count===0) {%>
+                                <div class="carousel-item active">
+                                    <img src="<%= i.url %>" class="d-block w-100" alt="">
                                 </div>
+                                <% } else{%>
+
+                                    <div class="carousel-item">
+                                        <img src="<%= i.url %>" class="d-block w-100" alt="">
+                                    </div>
+                                    <%} %>
+                                        <% count +=1; %>
+
+                                            <% } %>
+                </div>
+                <% if(park.images.length> 1){ %>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <% } %>
+            </div>
+
+            <div class="card mb-4">
+
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= park.title%> at <%= park.location%>
+                    </h5>
+                    <p class="card-text">
+                        <%= park.description%>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+
+                    <li class="list-group-item">
+                        <% for(let tag of park.equipment) {%>
+                            <span class="badge bg-secondary">
+                                <%= tag%>
+                            </span>
+                            <% }%>
+                    </li>
+                    <li class="list-group-item text-muted">
+                        <%= park.address%>
+                    </li>
+
+                </ul>
+                <% if(currentUser && park.author.equals(currentUser._id)){ %>
+                    <div class="card-body">
+                        <a href="/parks/<%= park._id %>/edit" class="card-link btn btn-warning">Edit</a>
+
+                        <form action="/parks/<%= park._id %>?_method=DELETE" method="POST" class="d-inline">
+                            <button class='btn btn-danger'>delete</button>
+                        </form>
+                    </div>
+                    <%}%>
+                        <div class="card-footer text-muted">Posted 2 days ago <i>by</i>
+                            <%=park.author.username%>
+                        </div>
 
             </div>
         </div>

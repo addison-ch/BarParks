@@ -12,10 +12,10 @@ module.exports.newParkForm = (req, res) => {
 module.exports.submitPark = async (req, res, next) => {
 
     const park = new Park(req.body.park);
+    console.log(req.files)
     park.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     park.author = req.user._id;
     await park.save();
-    console.log(park)
     req.flash('success', 'Sucessfully submitted a new park!');
     res.redirect(`/parks/${park._id}`);
 }
@@ -45,7 +45,11 @@ module.exports.showPark = async (req, res) => {
 
 module.exports.updatePark = async (req, res) => {
     const { id } = req.params;
+    console.log(req.files)
     const park = await Park.findByIdAndUpdate(id, { ...req.body });
+    const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    park.images.push(...imgs);
+    await park.save();
     req.flash('success', 'Sucessfully updated park information. 👍')
     res.redirect(`/parks/${id}`);
 }

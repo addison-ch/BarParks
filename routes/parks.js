@@ -16,7 +16,7 @@ router.get('/new', isLoggedIn, parks.newParkForm)
 
 router.route('/:id')
     .get(catchAsync(parks.showPark))
-    .put(isLoggedIn, validatePark, isAuthor, catchAsync(parks.updatePark))
+    .put(isLoggedIn, isAuthor, upload.array('image'), validatePark, catchAsync(parks.updatePark))
     .delete(isLoggedIn, isAuthor, catchAsync(parks.deletePark))
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(parks.editPark))
