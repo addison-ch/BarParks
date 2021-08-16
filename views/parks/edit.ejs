@@ -93,7 +93,7 @@
 
                 <div class="mb-3">
                     <% park.images.forEach(function(img,i){ %>
-                        <img src="<%=img.url%>" alt="" class="img-thumbnail">
+                        <img src="<%=img.thumbnail%>" alt="" class="img-thumbnail">
                         <div class="form-check-inline"><input type="checkbox" id="<%=i%>" name='deleteImages[]'
                                 value='<%= img.filename %>'></div>
                         <label for="<%=i%>">Delete?</label>
