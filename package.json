@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/addison-ch/BarParks#readme",
   "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.13.1",
     "cloudinary": "^1.26.3",
     "connect-flash": "^0.1.1",
     "dotenv": "^10.0.0",

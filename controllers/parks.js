@@ -1,5 +1,10 @@
 const Park = require('../models/park');
 const { cloudinary } = require('../cloudinary/index.js');
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mToken });
+
+
 
 module.exports.index = async (req, res) => {
     const parks = await Park.find({});
@@ -11,8 +16,13 @@ module.exports.newParkForm = (req, res) => {
 }
 
 module.exports.submitPark = async (req, res, next) => {
-
+    // const loc = req.body.park.location + " " + req.body.park.address;
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.park.address, limit: 1
+    }).send()
+    console.log(geoData.body.features[0])
     const park = new Park(req.body.park);
+    park.address = geoData.body.features[0].place_name;
     park.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     park.author = req.user._id;
     await park.save();
