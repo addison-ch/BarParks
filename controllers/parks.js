@@ -20,8 +20,9 @@ module.exports.submitPark = async (req, res, next) => {
     const geoData = await geocoder.forwardGeocode({
         query: req.body.park.address, limit: 1
     }).send()
-    console.log(geoData.body.features[0])
+
     const park = new Park(req.body.park);
+    park.geometry = geoData.body.features[0].geometry;
     park.address = geoData.body.features[0].place_name;
     park.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     park.author = req.user._id;
