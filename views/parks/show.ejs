@@ -1,7 +1,18 @@
 <% layout('layouts/boilerplate.ejs') %>
     <link rel="stylesheet" href="/css/starability-basic.css">
+
+    <script>
+        const mapToken = '<%=process.env.MAPBOX_TOKEN%>';
+
+    </script>
+    <script>
+        const park = <%- JSON.stringify(park) %>;
+
+    </script>
     <div class="row">
         <div class="col-6">
+            <div id='map' style='width: 400px; height: 300px;'></div>
+
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <% let count=0 %>
@@ -133,5 +144,6 @@
     </div>
 
     <script src='/js/checkReview.js'> </script>
+    <script src='/js/showMap.js'> </script>
 
     <!--  -->
