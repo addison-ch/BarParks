@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate.ejs') %>
-
+    <div id="map" style="width:100%; height:500px"></div>
 
     <div class="my-3">
         <h1>All Parks</h1>
@@ -14,7 +14,9 @@
                     <a href="/parks/<%= park._id %> ">
                         <% if(park.images[0]) {%>
                             <img class="img-fluid" alt="" src="<%= park.images[0].url %> ">
-                            <% } %>
+                            <% } else {%>
+                                <img src="" alt="">
+                                <% } %>
                     </a>
 
                 </div>
@@ -39,3 +41,9 @@
         </div>
 
         <% } %>
+
+            <script>
+                const mapToken = '<%=process.env.MAPBOX_TOKEN%>';
+
+            </script>
+            <script src="/js/clusterMap.js"></script>

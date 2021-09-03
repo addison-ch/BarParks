@@ -24,31 +24,26 @@ const seedDB = async () => {
             address: `${cities[randomIndex].city}, ${cities[randomIndex].province_name}, Canada`,
             title: `${sample(descriptors)}`,
             location: `${sample(places)}`,
-            images: [
-                {
-                    _id: '6119ba163d04fd2a54efab03',
-                    url: 'https://res.cloudinary.com/dzhjt6fqa/image/upload/v1629075988/BarParks/xzexosm5lrou2v5wghqw.jpg',
-                    filename: 'BarParks/xzexosm5lrou2v5wghqw'
-                },
-                {
-                    _id: '6119ba163d04fd2a54efab04',
-                    url: 'https://res.cloudinary.com/dzhjt6fqa/image/upload/v1629075988/BarParks/l5vdm0h7p1u18tcnvdcz.jpg',
-                    filename: 'BarParks/l5vdm0h7p1u18tcnvdcz'
-                },
-                {
-                    _id: '6119ba163d04fd2a54efab05',
-                    url: 'https://res.cloudinary.com/dzhjt6fqa/image/upload/v1629075988/BarParks/itqutswy09ajezvnqpsc.jpg',
-                    filename: 'BarParks/itqutswy09ajezvnqpsc'
-                },
-
-                {
-                    _id: '6119ba163d04fd2a54efab07',
-                    url: 'https://res.cloudinary.com/dzhjt6fqa/image/upload/v1629075990/BarParks/ak24cjjinjba7yx6c2hl.jpg',
-                    filename: 'BarParks/ak24cjjinjba7yx6c2hl'
-                }
+            geometry: {
+                type: "Point",
+                coordinates: [cities[randomIndex].lng, cities[randomIndex].lat]
+            },
+            images: [{
+                _id: "6131b633ebacb42e9484c6c8",
+                url: "https://res.cloudinary.com/dzhjt6fqa/image/upload/v1630647855/BarParks/ozidrortnhz8k6he6hel.jpg",
+                filename: "BarParks/ozidrortnhz8k6he6hel"
+            }, {
+                _id: "6131b633ebacb42e9484c6c9",
+                url: "https://res.cloudinary.com/dzhjt6fqa/image/upload/v1630647855/BarParks/mvxdq0cz9dp3zaxqxewp.jpg",
+                filename: "BarParks/mvxdq0cz9dp3zaxqxewp"
+            }, {
+                _id: "6131b633ebacb42e9484c6ca",
+                url: "https://res.cloudinary.com/dzhjt6fqa/image/upload/v1630647856/BarParks/rnqmkomo3gk49dsqxzfl.png",
+                filename: "BarParks/rnqmkomo3gk49dsqxzfl"
+            }
             ],
             description: `${sample(lorem)}`,
-            author: '610884d3b75c072a409a6b22',
+            author: '6131b38f71a99b0100b70137',
             equipment: ["rings", "pull-up bars", "push-up bars", "monkey bars", "poles", "machine guns"]
         })
         await park.save();
