@@ -18,7 +18,7 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
     await Park.deleteMany({});
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 300; i++) {
         const randomIndex = Math.floor(Math.random() * cities.length);
         const park = new Park({
             address: `${cities[randomIndex].city}, ${cities[randomIndex].province_name}, Canada`,

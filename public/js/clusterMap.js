@@ -2,7 +2,7 @@ mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-103.5917, 40.6699],
+    center: [-97.138451, 49.895077],
     zoom: 3
 });
 
@@ -10,11 +10,11 @@ map.on('load', () => {
     // Add a new source from our GeoJSON data and
     // set the 'cluster' option to true. GL-JS will
     // add the point_count property to your source data.
-    map.addSource('earthquakes', {
+    map.addSource('parks', {
         type: 'geojson',
-        // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+        // Point to GeoJSON data. This example visualizes all M1.0+ parks
         // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-        data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson',
+        data: parks,
         cluster: true,
         clusterMaxZoom: 14, // Max zoom to cluster points on
         clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
@@ -23,7 +23,7 @@ map.on('load', () => {
     map.addLayer({
         id: 'clusters',
         type: 'circle',
-        source: 'earthquakes',
+        source: 'parks',
         filter: ['has', 'point_count'],
         paint: {
             // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
@@ -34,20 +34,20 @@ map.on('load', () => {
             'circle-color': [
                 'step',
                 ['get', 'point_count'],
-                '#51bbd6',
-                100,
-                '#f1f075',
-                750,
-                '#f28cb1'
+                '#A6D3A0',
+                10,
+                '#4A7856',
+                30,
+                '#30734C'
             ],
             'circle-radius': [
                 'step',
                 ['get', 'point_count'],
-                20,
-                100,
+                13,
+                10,
+                18,
                 30,
-                750,
-                40
+                25
             ]
         }
     });
@@ -55,7 +55,7 @@ map.on('load', () => {
     map.addLayer({
         id: 'cluster-count',
         type: 'symbol',
-        source: 'earthquakes',
+        source: 'parks',
         filter: ['has', 'point_count'],
         layout: {
             'text-field': '{point_count_abbreviated}',
@@ -67,13 +67,13 @@ map.on('load', () => {
     map.addLayer({
         id: 'unclustered-point',
         type: 'circle',
-        source: 'earthquakes',
+        source: 'parks',
         filter: ['!', ['has', 'point_count']],
         paint: {
-            'circle-color': '#11b4da',
+            'circle-color': '#B3FFB3',
             'circle-radius': 4,
             'circle-stroke-width': 1,
-            'circle-stroke-color': '#fff'
+            'circle-stroke-color': '#D1FFD7'
         }
     });
 
@@ -83,7 +83,7 @@ map.on('load', () => {
             layers: ['clusters']
         });
         const clusterId = features[0].properties.cluster_id;
-        map.getSource('earthquakes').getClusterExpansionZoom(
+        map.getSource('parks').getClusterExpansionZoom(
             clusterId,
             (err, zoom) => {
                 if (err) return;
@@ -101,6 +101,7 @@ map.on('load', () => {
     // the location of the feature, with
     // description HTML from its properties.
     map.on('click', 'unclustered-point', (e) => {
+        console.log(e.features[0])
         const coordinates = e.features[0].geometry.coordinates.slice();
         const mag = e.features[0].properties.mag;
         const tsunami =
@@ -116,13 +117,14 @@ map.on('load', () => {
         new mapboxgl.Popup()
             .setLngLat(coordinates)
             .setHTML(
-                `magnitude: ${mag}<br>Was there a tsunami?: ${tsunami}`
+                `<h3>Calisthenics park!</h3>`
             )
             .addTo(map);
     });
 
     map.on('mouseenter', 'clusters', () => {
         map.getCanvas().style.cursor = 'pointer';
+
     });
     map.on('mouseleave', 'clusters', () => {
         map.getCanvas().style.cursor = '';
