@@ -13,6 +13,8 @@ ImageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/w_200');
 });
 
+const opts = { toJSON: { virtuals: true } };
+
 const ParkSchema = new Schema({
     title: String,
     location: String,
@@ -33,6 +35,15 @@ const ParkSchema = new Schema({
     equipment: [String],
     author: { type: Schema.Types.ObjectId, ref: 'User' },
     reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }]
+}, opts)
+
+ParkSchema.virtual('properties.popUpMarkup').get(function () {
+    return (`
+    <strong><a href="/parks/${this._id}">${this.title}</a><strong>
+    <p>${this.description.substring(0, 50)}...</p>
+    `);
+
+
 })
 
 ParkSchema.post('findOneAndDelete', async function (doc) {

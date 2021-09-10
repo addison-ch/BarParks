@@ -101,12 +101,12 @@ map.on('load', () => {
     // the location of the feature, with
     // description HTML from its properties.
     map.on('click', 'unclustered-point', (e) => {
-        console.log(e.features[0])
-        const coordinates = e.features[0].geometry.coordinates.slice();
-        const mag = e.features[0].properties.mag;
-        const tsunami =
-            e.features[0].properties.tsunami === 1 ? 'yes' : 'no';
 
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        // const mag = e.features[0].properties.mag;
+        // const tsunami =
+        //     e.features[0].properties.tsunami === 1 ? 'yes' : 'no';
+        const text = e.features[0].properties.popUpMarkup;
         // Ensure that if the map is zoomed out such that
         // multiple copies of the feature are visible, the
         // popup appears over the copy being pointed to.
@@ -117,7 +117,7 @@ map.on('load', () => {
         new mapboxgl.Popup()
             .setLngLat(coordinates)
             .setHTML(
-                `<h3>Calisthenics park!</h3>`
+                `${text}`
             )
             .addTo(map);
     });
