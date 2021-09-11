@@ -1,9 +1,8 @@
 <% layout('layouts/boilerplate.ejs') %>
-    <div id="map" style="width:100%; height:500px"></div>
+    <div id="cluster-map"></div>
 
     <div class="my-3">
         <h1>All Parks</h1>
-        <h4><a href="/parks/new">Submit a park</a></h4>
     </div>
 
     <% for(let park of parks){ %>
@@ -47,7 +46,7 @@
 
             </script>
             <script>
-                const parks = {features: <%- JSON.stringify(parks) %>}
-        
+                const parks = { features: <%- JSON.stringify(parks) %>}
+
             </script>
             <script src="/js/clusterMap.js"></script>

@@ -8,6 +8,7 @@ const map = new mapboxgl.Map({
 
 
 });
+map.addControl(new mapboxgl.NavigationControl());
 
 const marker1 = new mapboxgl.Marker()
     .setLngLat(park.geometry.coordinates)
