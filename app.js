@@ -19,6 +19,8 @@ const reviewsRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
 const User = require('./models/user');
 
+const mongoSanitize = require('express-mongo-sanitize');
+
 mongoose.connect('mongodb://localhost:27017/barparks', {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndexes: true, useFindAndModify: false
 });
@@ -37,6 +39,7 @@ app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(mongoSanitize());
 
 const sessionConfig = {
     secret: 'aterriblesecret', resave: false, saveUninitialized: true,
