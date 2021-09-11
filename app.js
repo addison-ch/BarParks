@@ -58,9 +58,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-app.get('/', (req, res) => {
-    res.render('home.ejs');
-})
+
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
@@ -68,6 +66,10 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     next();
 
+})
+
+app.get('/', (req, res) => {
+    res.render('home.ejs');
 })
 
 app.use("/", userRoutes);
