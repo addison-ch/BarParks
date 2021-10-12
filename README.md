@@ -27,4 +27,4 @@ Live demo: [Deployed on Heroku!](https://sheltered-headland-08597.herokuapp.com/
    ```
 
 6. Run `mongod`, then run  `node app.js` in the terminal
-7. Go to locohost:3000
+7. Go to localhost:3000
