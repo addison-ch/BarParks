@@ -18,10 +18,13 @@ const parksRoutes = require('./routes/parks');
 const reviewsRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
 const User = require('./models/user');
-
 const mongoSanitize = require('express-mongo-sanitize');
+const MongoStore = require('connect-mongo');
 
-mongoose.connect('mongodb://localhost:27017/barparks', {
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/barparks';
+
+mongoose.connect(dbUrl, {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndexes: true, useFindAndModify: false
 });
 
@@ -41,8 +44,21 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
+const secretkey = process.env.SECRET || 'squirrel'
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: secretkey
+    }
+});
+
 const sessionConfig = {
-    secret: 'aterriblesecret', resave: false, saveUninitialized: true,
+    store: store,
+    name: 'sess',
+    secret: secretkey,
+    resave: false, saveUninitialized: true,
     cookie: {
         httpOnly: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
