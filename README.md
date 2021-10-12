@@ -1,5 +1,5 @@
 # BarParks
-Full-stack web app built with Node, Express, and MongoDB. 
+Full-stack web app built with Node, Express, and MongoDB. ___
 [Deployed on Heroku!](https://sheltered-headland-08597.herokuapp.com/)
 
 # Running it locally
