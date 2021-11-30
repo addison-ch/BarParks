@@ -2,6 +2,10 @@
 Full-stack web app built with Node, Express, and MongoDB. 
 Live demo: [Deployed on Heroku!](https://sheltered-headland-08597.herokuapp.com/)
 
+# Todo:
+- Redo front-end with React
+- Fix deployment issue with Heroku
+
 # Running it locally
 1. Clone the repository
 
