@@ -2,8 +2,8 @@
 Full-stack web app built with Node, Express, and MongoDB. 
 Live demo: [Deployed on Heroku!](https://sheltered-headland-08597.herokuapp.com/)
 
-![image_main]<img src="https://user-images.githubusercontent.com/74084822/143974019-8d15e8b2-a42d-4012-8bdd-c40ec957005f.png" width="400" height="790">
-![image]<img src="https://user-images.githubusercontent.com/74084822/143974479-f5c615f6-9ebb-43ff-a22f-08f68628507f.png" width="400" height="790">
+![image_main]<img src="https://user-images.githubusercontent.com/74084822/143974019-8d15e8b2-a42d-4012-8bdd-c40ec957005f.png" width="600" height="300">
+![image]<img src="https://user-images.githubusercontent.com/74084822/143974479-f5c615f6-9ebb-43ff-a22f-08f68628507f.png" width="600" height="290">
 
 
 
