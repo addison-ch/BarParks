@@ -2,7 +2,7 @@
 Full-stack web app built with Node, Express, and MongoDB. 
 
 <p align="center">
-![Screenshot](image.png)
+![image](image.png)
 </p>
 
 
