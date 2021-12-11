@@ -1,9 +1,9 @@
 # BarParks
 Full-stack web app built with Node, Express, and MongoDB. 
 
-<p align="center">
+
 ![image](image.png)
-</p>
+
 
 
 # Todo:
