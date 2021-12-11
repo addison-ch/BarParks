@@ -2,10 +2,7 @@
 Full-stack web app built with Node, Express, and MongoDB. 
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/74084822/143974019-8d15e8b2-a42d-4012-8bdd-c40ec957005f.png" width="640" height="300"> 
-</p>
-<p align="center">
-<img src="https://user-images.githubusercontent.com/74084822/143974479-f5c615f6-9ebb-43ff-a22f-08f68628507f.png" width="551" height="321">
+![Screenshot](image.png)
 </p>
 
 
