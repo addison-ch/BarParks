@@ -4,11 +4,12 @@ Full-stack web app built with Node, Express, and MongoDB.
 The aim of this project is to create an environment where users can freely share, discover, and rate outdoor exercise locations they find with the rest of the world. Many outdoor workout parks go undiscovered because they aren't searchable through services like Google Maps. BarParks serves as a way to crowdsource these hard to find exercise locations. 
 
 ### Features
-- Posting, editing, deletion of exercise locations & reviews, with front-end and back-end data/schema validations
+- Posting, editing, deletion of exercise locations & reviews, with client-side and server-side validations
 - Responsive and accessible design created with Bootstrap5
 - Inegrated the MapBox API to create an interactive cluster map, geocode addresses, and display an accurate map of each location
 - Image upload and storage using the Cloudinary API
-- User authorization and authentication, built from scratch
+- User authorization and authentication (login/sign up), built from scratch
+- Flash messages that react to different user interactions with the app
 
 ![image](image.png)
 
