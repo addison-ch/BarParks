@@ -11,8 +11,10 @@ The aim of this project is to create an environment where users can freely share
 - User authorization and authentication (login/sign up), built from scratch
 - Flash messages that react to different user interactions with the app
 
-![image](image.png)
 
+---
+![image](image.png)
+---
 
 # Running it locally
 1. Clone the repository
