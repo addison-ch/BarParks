@@ -1,9 +1,11 @@
-# BarParks
-Full-stack web app built with Node, Express, and MongoDB. 
+# 🏃‍♂️ BARPARKS
 
-The aim of this project is to create an environment where users can freely share, discover, and rate outdoor exercise locations they find with the rest of the world. Many outdoor workout parks go undiscovered because they aren't searchable through services like Google Maps. BarParks serves as a way to crowdsource these hard to find exercise locations. 
+### Full-stack web app built with Node, Express, and MongoDB.
 
-### Features
+### The aim of this project is to create an environment where users can freely share, discover, and rate outdoor exercise locations they find with the rest of the world. Many outdoor workout parks go undiscovered because they aren't searchable through services like Google Maps. BarParks serves as a way to crowdsource these hard to find exercise locations.
+
+
+## 🗺 Features
 - Posting, editing, deletion of exercise locations & reviews, with client-side and server-side validations
 - Responsive and accessible design created with Bootstrap5
 - Inegrated the MapBox API to create an interactive cluster map, geocode addresses, and display an accurate map of each location
@@ -12,11 +14,9 @@ The aim of this project is to create an environment where users can freely share
 - Flash messages that react to different user interactions with the app
 
 
----
-![image](image.png)
----
 
-# Running it locally
+## 🌳 Run locally
+
 1. Clone the repository
 
    ```
@@ -44,7 +44,15 @@ The aim of this project is to create an environment where users can freely share
 7. Go to localhost:3000
 
 
-# Todo:
-- Redo front-end with React
-- Fix deployment issue with Heroku
 
+## 📸 Images
+
+![image](image.png)
+
+
+
+
+
+## ✏  To do list
+- Deploy app onto Heroku / other hosting service
+- Redesign front-end 
