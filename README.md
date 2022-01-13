@@ -1,8 +1,8 @@
 # 🏃‍♂️ BARPARKS
 
-### Full-stack web app built with Node, Express, and MongoDB.
+#### Full-stack web app built with Node, Express, and MongoDB.
 
-### The aim of this project is to create an environment where users can freely share, discover, and rate outdoor exercise locations they find with the rest of the world. Many outdoor workout parks go undiscovered because they aren't searchable through services like Google Maps. BarParks serves as a way to crowdsource these hard to find exercise locations.
+#### The aim of this project is to create an environment where users can freely share, discover, and rate outdoor exercise locations they find with the rest of the world. Many outdoor workout parks go undiscovered because they aren't searchable through services like Google Maps. BarParks serves as a way to crowdsource these hard to find exercise locations.
 
 
 ## 🗺 Features
